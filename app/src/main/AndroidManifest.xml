@@ -4,12 +4,15 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/introimg"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/introimg"
+        android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".adminpanel"></activity>
+        <activity android:name=".thankyou"></activity>
+        <activity android:name=".address" />
+        <activity android:name=".reviewitems" />
+        <activity android:name=".adminpanel" />
         <activity android:name=".logadmin" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Welcome">

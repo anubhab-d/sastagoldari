@@ -40,6 +40,14 @@
                 android:textStyle="bold">
             </TextView>
 
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="6dp"
+                android:id="@+id/cart"
+                android:src="@drawable/cart" />
+
         </RelativeLayout>
 
         <GridLayout
@@ -80,6 +88,7 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="12dp"
                         android:gravity="center"
+                        android:id="@+id/name"
                         android:text="আলু\n₹20/kg"
                         android:textColor="#000000" />
                     <LinearLayout
@@ -150,120 +159,123 @@
                         android:layout_marginTop="8dp"
                         android:background="#DF362D"
                         android:text="Add to cart"
+                        android:id="@+id/atc"
                         android:textColor="#FFFFFF"
                         android:textSize="8sp" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!--
-                        <androidx.cardview.widget.CardView
-
-                            android:layout_width="150dp"
-                            android:layout_height="180dp"
-                            android:layout_margin="12dp"
-                            app:cardCornerRadius="12dp"
-
-                            app:cardElevation="6dp">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_gravity="center"
-                                android:foregroundGravity="center"
-                                android:gravity="left"
-                                android:orientation="vertical"
-                                android:padding="16dp">
-
-                                <ImageView
-                                    android:layout_width="120dp"
-                                    android:layout_height="100dp"
-                                    android:src="@drawable/onion" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_marginTop="1dp"
-                                    android:gravity="center"
-                                    android:text="পেঁয়াজ\n₹20/kg"
-                                    android:textColor="#000000" />
-
-                            </LinearLayout>
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-
-                            android:layout_width="150dp"
-                            android:layout_height="180dp"
-                            android:layout_margin="12dp"
-                            app:cardCornerRadius="12dp"
-
-                            app:cardElevation="6dp">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_gravity="center"
-                                android:foregroundGravity="center"
-                                android:gravity="left"
-                                android:orientation="vertical"
-                                android:padding="16dp">
-
-                                <ImageView
-                                    android:layout_width="120dp"
-                                    android:layout_height="100dp"
-                                    android:src="@drawable/brinjal" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_marginTop="12dp"
-                                    android:gravity="center"
-                                    android:text="বেগুন\n₹20/kg"
-                                    android:textColor="#000000" />
-
-                            </LinearLayout>
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-
-                            android:layout_width="150dp"
-                            android:layout_height="180dp"
-                            android:layout_margin="12dp"
-                            app:cardCornerRadius="12dp"
-
-                            app:cardElevation="6dp">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_gravity="center"
-                                android:foregroundGravity="center"
-                                android:gravity="left"
-                                android:orientation="vertical"
-                                android:padding="16dp">
-
-                                <ImageView
-                                    android:layout_width="120dp"
-                                    android:layout_height="100dp"
-                                    android:src="@drawable/capsicum" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_marginTop="12dp"
-                                    android:gravity="center"
-                                    android:text="ক্যাপসিকাম\n₹20/kg"
-                                    android:textColor="#000000" />
-
-
-                            </LinearLayout>
-                        </androidx.cardview.widget.CardView>
--->
                     </GridLayout>
                 </LinearLayout>
 
             </ScrollView>
+
+
+    <!--
+                <androidx.cardview.widget.CardView
+
+                    android:layout_width="150dp"
+                    android:layout_height="180dp"
+                    android:layout_margin="12dp"
+                    app:cardCornerRadius="12dp"
+
+                    app:cardElevation="6dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:foregroundGravity="center"
+                        android:gravity="left"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/onion" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="1dp"
+                            android:gravity="center"
+                            android:text="পেঁয়াজ\n₹20/kg"
+                            android:textColor="#000000" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+
+                    android:layout_width="150dp"
+                    android:layout_height="180dp"
+                    android:layout_margin="12dp"
+                    app:cardCornerRadius="12dp"
+
+                    app:cardElevation="6dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:foregroundGravity="center"
+                        android:gravity="left"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/brinjal" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="12dp"
+                            android:gravity="center"
+                            android:text="বেগুন\n₹20/kg"
+                            android:textColor="#000000" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+
+                    android:layout_width="150dp"
+                    android:layout_height="180dp"
+                    android:layout_margin="12dp"
+                    app:cardCornerRadius="12dp"
+
+                    app:cardElevation="6dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:foregroundGravity="center"
+                        android:gravity="left"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/capsicum" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="12dp"
+                            android:gravity="center"
+                            android:text="ক্যাপসিকাম\n₹20/kg"
+                            android:textColor="#000000" />
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+-->
