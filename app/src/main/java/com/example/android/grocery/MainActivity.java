@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-list.add(new SellingItems("A","320"));
+list.add(new SellingItems("Ahgvhgvhgvgvhghgvhhgvhg","320"));
 list.add(new SellingItems("B","320"));
 list.add(new SellingItems("c","320"));
 list.add(new SellingItems("D","320"));
