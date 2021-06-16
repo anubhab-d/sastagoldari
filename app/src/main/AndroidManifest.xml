@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.grocery">
+    package="com.example.android.sastaGoldari">
 
     <application
         android:allowBackup="true"
@@ -9,13 +9,13 @@
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".thankyou"></activity>
-        <activity android:name=".address" />
-        <activity android:name=".reviewitems" />
-        <activity android:name=".adminpanel" />
-        <activity android:name=".logadmin" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Welcome">
+        <activity android:name="com.example.android.sastaGoldari.thankyou"></activity>
+        <activity android:name="com.example.android.sastaGoldari.address" />
+        <activity android:name="com.example.android.sastaGoldari.reviewitems" />
+        <activity android:name="com.example.android.sastaGoldari.adminpanel" />
+        <activity android:name="com.example.android.sastaGoldari.logadmin" />
+        <activity android:name="com.example.android.sastaGoldari.MainActivity" />
+        <activity android:name="com.example.android.sastaGoldari.Welcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

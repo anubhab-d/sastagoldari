@@ -1,4 +1,4 @@
-package com.example.android.grocery.adapter;
+package com.example.android.sastaGoldari.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,11 +7,10 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.android.grocery.R;
-import com.example.android.grocery.model.SellingItems;
+import com.example.android.sastaGoldari.R;
+import com.example.android.sastaGoldari.model.SellingItems;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
      private ArrayList<SellingItems> list = new ArrayList<>();

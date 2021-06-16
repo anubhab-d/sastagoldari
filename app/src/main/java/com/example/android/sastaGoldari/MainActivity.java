@@ -1,4 +1,4 @@
-package com.example.android.grocery;
+package com.example.android.sastaGoldari;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -7,15 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.example.android.grocery.adapter.ItemAdapter;
-import com.example.android.grocery.model.SellingItems;
+import com.example.android.sastaGoldari.adapter.ItemAdapter;
+import com.example.android.sastaGoldari.model.SellingItems;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
   ArrayList<SellingItems> list = new ArrayList<>();

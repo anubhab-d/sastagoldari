@@ -1,4 +1,4 @@
-package com.example.android.grocery.model;
+package com.example.android.sastaGoldari.model;
 
 public class SellingItems {
     String name;

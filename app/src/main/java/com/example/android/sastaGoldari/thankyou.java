@@ -1,17 +1,14 @@
-package com.example.android.grocery;
+package com.example.android.sastaGoldari;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.widget.Button;
 
-public class adminpanel extends AppCompatActivity {
+public class thankyou extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_adminpanel);
-
-
+        setContentView(R.layout.activity_thankyou);
     }
 }
