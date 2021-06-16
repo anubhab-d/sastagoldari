@@ -47,7 +47,10 @@
                 android:src="@drawable/cart" />
         </RelativeLayout>
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvItems"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_gravity="center"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/list_item" />
     </LinearLayout>
 </RelativeLayout>
