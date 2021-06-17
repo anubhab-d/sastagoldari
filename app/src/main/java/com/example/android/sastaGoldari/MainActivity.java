@@ -20,30 +20,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-list.add(new SellingItems("Ahgvhgvhgvgvhghgvhhgvhg","320"));
-list.add(new SellingItems("B","320"));
-list.add(new SellingItems("c","320"));
-list.add(new SellingItems("D","320"));
-list.add(new SellingItems("E","320"));
-list.add(new SellingItems("F","320"));
-list.add(new SellingItems("A","321"));
-list.add(new SellingItems("A","320"));
-list.add(new SellingItems("A","345"));
-list.add(new SellingItems("A","320"));
-list.add(new SellingItems("A","320"));
-list.add(new SellingItems("A","320"));
-list.add(new SellingItems("A","320"));
-list.add(new SellingItems("A","320"));
-list.add(new SellingItems("A","320"));
-list.add(new SellingItems("A","320"));
-list.add(new SellingItems("A","320"));
-list.add(new SellingItems("A","320"));
-list.add(new SellingItems("A","320"));
-list.add(new SellingItems("A","320"));
-list.add(new SellingItems("A","320"));
-list.add(new SellingItems("A","320"));
-list.add(new SellingItems("A","320"));
-list.add(new SellingItems("A","320"));
+        list.add(new SellingItems("Potato","20", "kg"));
+        list.add(new SellingItems("Onion","26", "qty"));
+        list.add(new SellingItems("Capsicum","18", "kg"));
+
 
 //        Button plus = (Button) findViewById(R.id.plus);
 //        Button minus = (Button) findViewById(R.id.minus);
