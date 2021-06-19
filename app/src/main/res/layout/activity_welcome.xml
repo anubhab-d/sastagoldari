@@ -10,12 +10,12 @@
 
     <Button
         android:id="@+id/user"
-        android:layout_width="129dp"
-        android:layout_height="54dp"
+        android:layout_width="182dp"
+        android:layout_height="63dp"
         android:background="#DF362D"
         android:padding="10dp"
         android:shadowColor="#000000"
-        android:text="গ্রাহক"
+        android:text="বাজারে প্রবেশ করুন"
         android:textColor="#FAFAFA"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,25 +24,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.527" />
 
-    <Button
-        android:id="@+id/admin"
-        android:layout_width="145dp"
-        android:layout_height="60dp"
-        android:background="#FFFFFF"
-        android:padding="10dp"
-        android:text="অ্যাডমিন"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.669" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="228dp"
         android:layout_height="138dp"
         android:gravity="center"
-        android:text="সস্তা গলদারি"
+        android:text="সস্তা গোলদারি"
         android:textColor="#000000"
         android:textSize="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -51,5 +38,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.195" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="55dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="ADMIN"
+        android:textColor="#000000"
+        android:textSize="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.964"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.949" />
+
+    <ImageView
+        android:id="@+id/admin"
+        android:layout_width="51dp"
+        android:layout_height="50dp"
+        android:src="@drawable/adminmain"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.953"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.92" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

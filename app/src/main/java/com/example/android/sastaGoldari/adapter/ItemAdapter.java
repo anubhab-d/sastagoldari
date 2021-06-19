@@ -31,6 +31,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         holder.price.setText("₹"+list.get(position).getPrice());
         holder.unit.setText("/"+list.get(position).getUnit());
         holder.unit2.setText(list.get(position).getUnit());
+
     }
 
     @Override
@@ -52,6 +53,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         Button plus;
         Button minus;
         TextView qty;
+        ImageView itemimg;
+
         public ItemViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
@@ -62,7 +65,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             minus=itemView.findViewById(R.id.minus);
             qty=itemView.findViewById(R.id.txtQuantity);
             unit2=itemView.findViewById(R.id.txtUnit);
-
+            itemimg=itemView.findViewById(R.id.imgItem);
             plus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

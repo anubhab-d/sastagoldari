@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class Welcome extends AppCompatActivity {
 
@@ -23,7 +24,7 @@ public class Welcome extends AppCompatActivity {
             }
         });
 
-        Button admin = (Button)findViewById(R.id.admin);
+        ImageView admin = (ImageView) findViewById(R.id.admin);
         admin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
