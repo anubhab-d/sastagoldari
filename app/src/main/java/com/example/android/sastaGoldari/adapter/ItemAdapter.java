@@ -102,13 +102,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
                 public void onClick(View view) {
                     itemlist.add(name+" "+price+" "+ qty);
                     Log.d("Name: ", name.getText().toString());
-
-
                 }
             });
         }
-
-
-
     }
 }
