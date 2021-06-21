@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,8 +16,12 @@ import com.example.android.sastaGoldari.model.SellingItems;
 import java.util.ArrayList;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
-     private ArrayList<SellingItems> list = new ArrayList<>();
-     public ArrayList<String> itemlist = new ArrayList<>();
+    private ArrayList<SellingItems> list = new ArrayList<>();
+    public ArrayList<String> itemlist = new ArrayList<>();
+    OnButtonClicked click;
+    public ItemAdapter(OnButtonClicked click){
+        this.click = click;
+    }
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
@@ -28,21 +31,29 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     @Override
     public void onBindViewHolder(ItemAdapter.ItemViewHolder holder, int position) {
         holder.name.setText(list.get(position).getName());
-        holder.price.setText("₹"+list.get(position).getPrice());
-        holder.unit.setText("/"+list.get(position).getUnit());
+        holder.price.setText("₹" + list.get(position).getPrice());
+        holder.unit.setText("/" + list.get(position).getUnit());
         holder.unit2.setText(list.get(position).getUnit());
-
+        holder.txtItemId.setText(list.get(position).getId());
+        holder.atc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                click.onAddButtonClicked(holder.txtItemId,holder.qty);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return list.size();
     }
-    public void updateList(ArrayList newList){
+
+    public void updateList(ArrayList newList) {
         list.clear();
         list.addAll(newList);
         notifyDataSetChanged();
     }
+
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
         TextView name;
@@ -54,6 +65,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         Button minus;
         TextView qty;
         ImageView itemimg;
+        TextView txtItemId;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
@@ -61,23 +73,23 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             price = itemView.findViewById(R.id.price);
             unit = itemView.findViewById(R.id.unit);
             atc = itemView.findViewById(R.id.btnATC);
-            plus=itemView.findViewById(R.id.plus);
-            minus=itemView.findViewById(R.id.minus);
-            qty=itemView.findViewById(R.id.txtQuantity);
-            unit2=itemView.findViewById(R.id.txtUnit);
-            itemimg=itemView.findViewById(R.id.imgItem);
+            plus = itemView.findViewById(R.id.plus);
+            minus = itemView.findViewById(R.id.minus);
+            qty = itemView.findViewById(R.id.txtQuantity);
+            unit2 = itemView.findViewById(R.id.txtUnit);
+            itemimg = itemView.findViewById(R.id.imgItem);
+            txtItemId = itemView.findViewById(R.id.txtItemId);
             plus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     double qtykg = Double.parseDouble(qty.getText().toString());
-                    if(unit.getText().toString().equals("/kg")){
-                        String stringdouble= Double.toString(qtykg+0.5);
+                    if (unit.getText().toString().equals("/kg")) {
+                        String stringdouble = Double.toString(qtykg + 0.5);
                         qty.setText(stringdouble);
-                }
-                    else if(unit.getText().toString().equals("/qty")){
-                        String stringdouble= Double.toString(qtykg+1.0);
+                    } else if (unit.getText().toString().equals("/qty")) {
+                        String stringdouble = Double.toString(qtykg + 1.0);
                         qty.setText(stringdouble);
-                }
+                    }
                 }
             });
 
@@ -85,22 +97,22 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
                 @Override
                 public void onClick(View view) {
                     double qtykg = Double.parseDouble(qty.getText().toString());
-                    if(qtykg>0.0){
-                    if(unit.getText().toString().equals("/kg")){
-                        String stringdouble= Double.toString(qtykg-0.5);
-                        qty.setText(stringdouble);
+                    if (qtykg > 0.0) {
+                        if (unit.getText().toString().equals("/kg")) {
+                            String stringdouble = Double.toString(qtykg - 0.5);
+                            qty.setText(stringdouble);
+                        } else if (unit.getText().toString().equals("/qty")) {
+                            String stringdouble = Double.toString(qtykg - 1.0);
+                            qty.setText(stringdouble);
+                        }
                     }
-                    else if(unit.getText().toString().equals("/qty")){
-                        String stringdouble= Double.toString(qtykg-1.0);
-                        qty.setText(stringdouble);
-                    }
-                }}
+                }
             });
 
             atc.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    itemlist.add(name+" "+price+" "+ qty);
+                    itemlist.add(name + " " + price + " " + qty);
                     Log.d("Name: ", name.getText().toString());
                 }
             });

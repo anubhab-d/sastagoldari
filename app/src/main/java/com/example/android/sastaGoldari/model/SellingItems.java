@@ -4,6 +4,8 @@ public class SellingItems {
     String name;
     String price;
     String unit;
+    String id;
+
     public String getName() {
         return name;
     }
@@ -16,11 +18,14 @@ public class SellingItems {
         return unit;
     }
 
-    public SellingItems(String name, String price, String unit) {
-        this.name = name;
-        this.price = price;
-        this.unit=unit;
+    public String getId() {
+        return id;
     }
 
-
+    public SellingItems(String name, String price, String unit, String id) {
+        this.name = name;
+        this.price = price;
+        this.unit = unit;
+        this.id = id;
+    }
 }
