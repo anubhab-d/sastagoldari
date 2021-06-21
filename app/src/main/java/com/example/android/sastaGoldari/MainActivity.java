@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.sastaGoldari.adapter.ItemAdapter;
-import com.example.android.sastaGoldari.adapter.OnButtonClicked;
+import com.example.android.sastaGoldari.interfaces.OnButtonClicked;
 import com.example.android.sastaGoldari.model.CartModel;
 import com.example.android.sastaGoldari.model.SellingItems;
 import com.example.android.sastaGoldari.utils.ConstCode;
@@ -22,7 +22,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -112,7 +111,10 @@ public class MainActivity extends AppCompatActivity implements OnButtonClicked {
     }
 
     @Override
-    public void onAddButtonClicked(TextView id, TextView qty) {
-        cartList.add(new CartModel(id.getText().toString(),qty.getText().toString()));
+    public void onAddButtonClicked(TextView name, TextView price, TextView unit, TextView qty) {
+        cartList.add(new CartModel(name.getText().toString()
+                ,price.getText().toString()
+                ,unit.getText().toString()
+                ,qty.getText().toString()));
     }
 }

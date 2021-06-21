@@ -1,17 +1,24 @@
 package com.example.android.sastaGoldari.model;
 
 public class CartModel {
-    String id;
+    String name;
+    String price;
+    String unit;
     String qty;
-    public String getId() {
-        return id;
+    public String getName() {
+        return name;
     }
-
-    public String getQty() {
-        return qty;
+    public String getPrice() {
+        return price;
     }
-    public CartModel(String id,String qty) {
-        this.id = id;
+    public String getUnit() {
+        return unit;
+    }
+    public String getQty() { return qty; }
+    public CartModel(String name, String price, String unit, String qty) {
+        this.name = name;
+        this.price = price;
+        this.unit = unit;
         this.qty = qty;
     }
 }

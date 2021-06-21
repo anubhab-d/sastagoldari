@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.sastaGoldari.R;
+import com.example.android.sastaGoldari.interfaces.OnButtonClicked;
 import com.example.android.sastaGoldari.model.SellingItems;
 
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         holder.atc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                click.onAddButtonClicked(holder.txtItemId,holder.qty);
+                click.onAddButtonClicked(holder.name,holder.price,holder.unit,holder.qty);
             }
         });
     }
