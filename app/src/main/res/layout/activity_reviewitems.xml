@@ -27,7 +27,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:text="10 items found"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2" />
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+        android:textStyle="bold" />
 
     <TableLayout
         android:id="@+id/tblCartList"
@@ -41,19 +42,21 @@
             android:paddingBottom="10dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="24dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Name"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:textSize="16dp"
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="20dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Price"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:textSize="16dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -62,6 +65,7 @@
                 android:paddingStart="15dp"
                 android:text="Quantity"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:textSize="16dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -69,13 +73,15 @@
                 android:layout_height="match_parent"
                 android:text="Total"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:textSize="16dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginEnd="3dp" />
+                android:layout_marginEnd="3dp"
+                android:textSize="16dp" />
         </TableRow>
     </TableLayout>
 

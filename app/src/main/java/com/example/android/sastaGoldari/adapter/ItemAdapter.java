@@ -33,7 +33,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     public void onBindViewHolder(ItemAdapter.ItemViewHolder holder, int position) {
         holder.name.setText(list.get(position).getName());
         holder.price.setText("₹" + list.get(position).getPrice());
-        holder.unit.setText("/" + list.get(position).getUnit());
+        holder.unit.setText(list.get(position).getUnit());
         holder.unit2.setText(list.get(position).getUnit());
         holder.txtItemId.setText(list.get(position).getId());
         holder.atc.setOnClickListener(new View.OnClickListener() {
@@ -84,10 +84,10 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
                 @Override
                 public void onClick(View view) {
                     double qtykg = Double.parseDouble(qty.getText().toString());
-                    if (unit.getText().toString().equals("/kg")) {
+                    if (unit.getText().toString().equals("kg")) {
                         String stringdouble = Double.toString(qtykg + 0.5);
                         qty.setText(stringdouble);
-                    } else if (unit.getText().toString().equals("/qty")) {
+                    } else if (unit.getText().toString().equals("qty")) {
                         String stringdouble = Double.toString(qtykg + 1.0);
                         qty.setText(stringdouble);
                     }
@@ -99,10 +99,10 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
                 public void onClick(View view) {
                     double qtykg = Double.parseDouble(qty.getText().toString());
                     if (qtykg > 0.0) {
-                        if (unit.getText().toString().equals("/kg")) {
+                        if (unit.getText().toString().equals("kg")) {
                             String stringdouble = Double.toString(qtykg - 0.5);
                             qty.setText(stringdouble);
-                        } else if (unit.getText().toString().equals("/qty")) {
+                        } else if (unit.getText().toString().equals("qty")) {
                             String stringdouble = Double.toString(qtykg - 1.0);
                             qty.setText(stringdouble);
                         }

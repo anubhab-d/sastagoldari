@@ -31,6 +31,15 @@ public class reviewitems extends AppCompatActivity {
         rvCartItem.setAdapter(adapter);
         adapter.updateList(cartList);
         MainActivity.cartList.clear();
+        int itemCount = cartList.size();
+        TextView n = (TextView) findViewById(R.id.tvCartItemCnt);
+        if(itemCount>1){
+            n.setText(""+itemCount+" items found");
+        }
+        else{
+            n.setText(""+itemCount+" item found");
+        }
+
        // Log.d("chk_list",MainActivity.cartList.get(0).getQty());
         int apha = getIntent().getIntExtra("a", 0);
       //  TextView list =(TextView)findViewById(R.id.list);
