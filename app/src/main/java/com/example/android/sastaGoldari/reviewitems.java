@@ -30,7 +30,6 @@ public class reviewitems extends AppCompatActivity {
         rvCartItem.setLayoutManager(new LinearLayoutManager(this));
         rvCartItem.setAdapter(adapter);
         adapter.updateList(cartList);
-        MainActivity.cartList.clear();
         int itemCount = cartList.size();
         TextView n = (TextView) findViewById(R.id.tvCartItemCnt);
         if(itemCount>1){
@@ -51,5 +50,11 @@ public class reviewitems extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        MainActivity.cartList.clear();
+        super.onBackPressed();
     }
 }

@@ -23,11 +23,11 @@
         app:layout_constraintVertical_bias="0.055" />
 
     <Button
-        android:id="@+id/order"
+        android:id="@+id/orderNext"
         android:layout_width="158dp"
         android:layout_height="61dp"
         android:background="#DF362D"
-        android:text="অর্ডার দিন"
+        android:text="পরবর্তী"
         android:textColor="#FFFFFF"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,7 +38,7 @@
         app:layout_constraintVertical_bias="0.762" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/etCusPh"
         android:layout_width="190dp"
         android:layout_height="37dp"
         android:background="#FFFFFF"
@@ -68,7 +68,7 @@
         app:layout_constraintVertical_bias="0.186" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/etCusName"
         android:layout_width="213dp"
         android:layout_height="38dp"
         android:background="#FFFFFF"
@@ -84,7 +84,7 @@
         app:layout_constraintVertical_bias="0.186" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/etCusAddress"
         android:layout_width="213dp"
         android:layout_height="59dp"
         android:background="#FFFFFF"
@@ -100,7 +100,7 @@
         app:layout_constraintVertical_bias="0.309" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/etCusPara"
         android:layout_width="190dp"
         android:layout_height="37dp"
         android:background="#FFFFFF"
