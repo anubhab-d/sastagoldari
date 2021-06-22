@@ -1,12 +1,13 @@
-package com.example.android.sastaGoldari;
+package com.example.android.sastaGoldari.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.service.autofill.TextValueSanitizer;
 import android.view.View;
 import android.widget.TextView;
+
+import com.example.android.sastaGoldari.R;
 
 public class adminpanel extends AppCompatActivity {
 
@@ -45,7 +46,7 @@ public class adminpanel extends AppCompatActivity {
         vieworder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(adminpanel.this, vieworder.class);
+                Intent i = new Intent(adminpanel.this, com.example.android.sastaGoldari.activities.vieworder.class);
                 startActivity(i);
             }
         });

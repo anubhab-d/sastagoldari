@@ -1,8 +1,10 @@
-package com.example.android.sastaGoldari;
+package com.example.android.sastaGoldari.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.android.sastaGoldari.R;
 
 public class vieworder extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.android.sastaGoldari;
+package com.example.android.sastaGoldari.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.android.sastaGoldari.databinding.ActivityAdditemBinding;

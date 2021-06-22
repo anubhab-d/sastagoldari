@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bgintrod"
     android:orientation="vertical"
-    tools:context=".adminpanel">
+    tools:context=".activities.adminpanel">
 
     <TextView
         android:id="@+id/textView5"

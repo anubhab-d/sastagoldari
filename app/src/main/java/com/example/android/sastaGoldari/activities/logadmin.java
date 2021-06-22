@@ -1,4 +1,4 @@
-package com.example.android.sastaGoldari;
+package com.example.android.sastaGoldari.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.android.sastaGoldari.R;
 
 public class logadmin extends AppCompatActivity {
 
@@ -25,7 +27,7 @@ public class logadmin extends AppCompatActivity {
 
                 if(username.getText().toString().equals("user") && password.getText().toString().equals("pass")){
                     Toast.makeText(getApplicationContext(),"Login Success",Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(logadmin.this, adminpanel.class);
+                    Intent i = new Intent(logadmin.this, SelectEditActivity.class);
                     startActivity(i);
 
 

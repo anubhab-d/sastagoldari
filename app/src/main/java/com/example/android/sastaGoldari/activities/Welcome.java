@@ -1,4 +1,4 @@
-package com.example.android.sastaGoldari;
+package com.example.android.sastaGoldari.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import com.example.android.sastaGoldari.R;
 
 public class Welcome extends AppCompatActivity {
 

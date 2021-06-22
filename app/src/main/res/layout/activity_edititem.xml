@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bgintrod"
-    tools:context=".additem">
+    tools:context=".activities.additem">
 
     <TextView
         android:id="@+id/textView22"
@@ -78,7 +78,7 @@
         app:layout_constraintVertical_bias="0.295" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/etProductName"
         android:layout_width="177dp"
         android:layout_height="41dp"
         android:background="#FFFEFE"
@@ -93,7 +93,7 @@
         app:layout_constraintVertical_bias="0.198" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/etProductPrice"
         android:layout_width="177dp"
         android:layout_height="41dp"
         android:background="#FFFFFF"
@@ -107,7 +107,7 @@
         app:layout_constraintVertical_bias="0.291" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnEditItem"
         android:layout_width="105dp"
         android:layout_height="59dp"
         android:background="#DF362D"
@@ -120,7 +120,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.729" />
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/spinnerUnit"
         android:layout_width="118dp"
         android:layout_height="41dp"
         app:layout_constraintBottom_toBottomOf="parent"

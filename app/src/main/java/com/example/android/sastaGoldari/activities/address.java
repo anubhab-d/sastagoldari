@@ -1,4 +1,4 @@
-package com.example.android.sastaGoldari;
+package com.example.android.sastaGoldari.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,8 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CompoundButton;
 
 import com.example.android.sastaGoldari.databinding.ActivityAddressBinding;
 import com.example.android.sastaGoldari.model.CartModel;
@@ -33,7 +31,7 @@ ArrayList<String> itemPrice = new ArrayList<>();
         firestore = FirebaseFirestore.getInstance();
         ActivityAddressBinding b = ActivityAddressBinding.inflate(getLayoutInflater());
         setContentView(b.getRoot());
-        for(int i=0;i<MainActivity.cartList.size();i++){
+        for(int i = 0; i< MainActivity.cartList.size(); i++){
             CartModel model = MainActivity.cartList.get(i);
             itemNames.add(model.getName());
             itemQty.add(model.getQty());

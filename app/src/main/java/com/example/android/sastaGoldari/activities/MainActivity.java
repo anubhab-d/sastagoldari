@@ -1,4 +1,4 @@
-package com.example.android.sastaGoldari;
+package com.example.android.sastaGoldari.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.android.sastaGoldari.R;
 import com.example.android.sastaGoldari.adapter.ItemAdapter;
 import com.example.android.sastaGoldari.interfaces.OnButtonClicked;
 import com.example.android.sastaGoldari.model.CartModel;
