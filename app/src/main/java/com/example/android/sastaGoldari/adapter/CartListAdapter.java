@@ -24,13 +24,15 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
 
     @Override
     public void onBindViewHolder(CartListAdapter.CartListViewHolder holder, int position) {
-        //int itemCount = cartList.size();
+        int itemCount = cartList.size();
         holder.tblName.setText(cartList.get(position).getName());
         holder.tblPrice.setText(cartList.get(position).getPrice()+"/"+cartList.get(position).getUnit());
         holder.tblQuantity.setText(cartList.get(position).getQty()+ " "+cartList.get(position).getUnit());
         double total = Double.parseDouble(cartList.get(position).getPrice().substring(1)) * Double.parseDouble(cartList.get(position).getQty());
         holder.tblTotal.setText(cartList.get(position).getPrice()+ "×" +cartList.get(position).getQty()+"= ₹"+Double.toString(total));
-        //holder.n.setText(""+itemCount);
+
+
+
         holder.tblRemoveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,8 +57,8 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
         TextView tblQuantity;
         TextView tblTotal;
         ImageView tblRemoveBtn;
-        //TextView n;
-
+        TextView gtotal;
+        TextView noti;
 
         public CartListViewHolder(View itemView) {
             super(itemView);
@@ -65,7 +67,8 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
             tblQuantity = itemView.findViewById(R.id.tblQuantity);
             tblTotal = itemView.findViewById(R.id.tblTotal);
             tblRemoveBtn = itemView.findViewById(R.id.tblRemoveBtn);
-           //n = itemView.findViewById(R.id.tvCartItemCnt);
+            gtotal=itemView.findViewById(R.id.grandtotal);
+            noti= itemView.findViewById(R.id.noti);
         }
     }
 }

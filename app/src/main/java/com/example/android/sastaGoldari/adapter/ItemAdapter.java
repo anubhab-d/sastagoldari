@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
     private ArrayList<SellingItems> list = new ArrayList<>();
     public ArrayList<String> itemlist = new ArrayList<>();
+    int sum=0;
     OnButtonClicked click;
     public ItemAdapter(OnButtonClicked click){
         this.click = click;
@@ -36,12 +37,16 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         holder.unit.setText(list.get(position).getUnit());
         holder.unit2.setText(list.get(position).getUnit());
         holder.txtItemId.setText(list.get(position).getId());
+
         holder.atc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 click.onAddButtonClicked(holder.name,holder.price,holder.unit,holder.qty);
+
+
             }
         });
+
     }
 
     @Override
@@ -67,6 +72,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         TextView qty;
         ImageView itemimg;
         TextView txtItemId;
+        TextView noti;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
@@ -80,6 +86,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             unit2 = itemView.findViewById(R.id.txtUnit);
             itemimg = itemView.findViewById(R.id.imgItem);
             txtItemId = itemView.findViewById(R.id.txtItemId);
+            noti = itemView.findViewById(R.id.noti);
             plus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
