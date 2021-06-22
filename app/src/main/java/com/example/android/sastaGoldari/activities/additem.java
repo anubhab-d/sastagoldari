@@ -3,6 +3,7 @@ package com.example.android.sastaGoldari.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -51,6 +52,8 @@ private FirebaseFirestore firestore;
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         ConstCode.showToast(additem.this,"Item Added Successfully");
+                        Intent i = new Intent(additem.this,SelectEditActivity.class);
+                        startActivity(i);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

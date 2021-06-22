@@ -86,7 +86,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             unit2 = itemView.findViewById(R.id.txtUnit);
             itemimg = itemView.findViewById(R.id.imgItem);
             txtItemId = itemView.findViewById(R.id.txtItemId);
-            noti = itemView.findViewById(R.id.noti);
+            noti = itemView.findViewById(R.id.txtNoti);
             plus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

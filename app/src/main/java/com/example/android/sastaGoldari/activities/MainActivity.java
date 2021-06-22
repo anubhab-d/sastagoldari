@@ -30,12 +30,14 @@ public class MainActivity extends AppCompatActivity implements OnButtonClicked {
   ArrayList<SellingItems> list = new ArrayList<>();
   public static ArrayList<CartModel> cartList = new ArrayList<>();
   FirebaseFirestore db;
+    TextView txtNoti;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RecyclerView rvItems =findViewById(R.id.rvItems);
         ItemAdapter adapter = new ItemAdapter(this);
+         txtNoti = findViewById(R.id.txtNoti);
         db = FirebaseFirestore.getInstance();
         db.collection("items")
                 .get()
@@ -117,5 +119,6 @@ public class MainActivity extends AppCompatActivity implements OnButtonClicked {
                 ,price.getText().toString()
                 ,unit.getText().toString()
                 ,qty.getText().toString()));
+        txtNoti.setText(Integer.toString(cartList.size()));
     }
 }

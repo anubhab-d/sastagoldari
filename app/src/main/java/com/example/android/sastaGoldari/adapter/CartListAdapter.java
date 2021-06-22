@@ -68,7 +68,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
             tblTotal = itemView.findViewById(R.id.tblTotal);
             tblRemoveBtn = itemView.findViewById(R.id.tblRemoveBtn);
             gtotal=itemView.findViewById(R.id.grandtotal);
-            noti= itemView.findViewById(R.id.noti);
+            noti= itemView.findViewById(R.id.txtNoti);
         }
     }
 }
