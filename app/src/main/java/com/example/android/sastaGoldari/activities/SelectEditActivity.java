@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -38,6 +39,7 @@ public class SelectEditActivity extends AppCompatActivity implements OnProductBu
         setContentView(R.layout.activity_select_edit);
         RecyclerView rvProduct = findViewById(R.id.rvProduct);
         FloatingActionButton btnAddItem = findViewById(R.id.btnAddItem);
+        ImageView imgViewOrder = findViewById(R.id.imgViewOrder);
         rvProduct.setLayoutManager(new LinearLayoutManager(this));
         firestore = FirebaseFirestore.getInstance();
         firestore.collection("items")
@@ -64,6 +66,14 @@ public class SelectEditActivity extends AppCompatActivity implements OnProductBu
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(SelectEditActivity.this, additem.class);
+                startActivity(i);
+            }
+        });
+
+        imgViewOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(SelectEditActivity.this, vieworder.class);
                 startActivity(i);
             }
         });

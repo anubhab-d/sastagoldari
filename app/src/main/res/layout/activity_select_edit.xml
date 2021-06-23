@@ -14,30 +14,34 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="120dp"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:text="Your Items"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
         android:textColor="#000000"
         android:textStyle="bold" />
 
-    <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="20dp"
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_above="@id/rvProduct"
         android:layout_toEndOf="@id/txtItem"
-        android:layout_marginBottom="8dp"
         android:layout_alignParentEnd="true"
-        android:src="@drawable/vieworder" />
-
+        android:layout_alignParentTop="true">
+        <ImageView
+            android:id="@+id/imgViewOrder"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="fitCenter"
+            android:layout_centerInParent="true"
+            android:src="@drawable/vieworder"/>
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProduct"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/txtItem"
-        android:layout_marginTop="10dp"
         tools:listitem="@layout/your_item_list" />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnAddItem"
