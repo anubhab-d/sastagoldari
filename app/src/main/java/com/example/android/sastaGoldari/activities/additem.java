@@ -24,19 +24,27 @@ private FirebaseFirestore firestore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityAdditemBinding binding = ActivityAdditemBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        ActivityAdditemBinding b = ActivityAdditemBinding.inflate(getLayoutInflater());
+        setContentView(b.getRoot());
         firestore = FirebaseFirestore.getInstance();
         String[] items = new String[]{"kg", "qty"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-        binding.spinner.setAdapter(adapter);
-        binding.button.setOnClickListener(new View.OnClickListener() {
+        b.spinner.setAdapter(adapter);
+        b.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addItem(binding.etItemName.getText().toString()
-                        ,binding.etItemPrice.getText().toString()
-                        ,binding.spinner.getSelectedItem().toString()
-                        );
+                if(b.etItemName.getText().toString().isEmpty()){
+                    b.etItemName.setError("Item's Name can't be empty");
+                }
+                if(b.etItemPrice.getText().toString().isEmpty()){
+                    b.etItemPrice.setError("Item's Price can't be empty");
+                }
+                if(!b.etItemName.getText().toString().isEmpty() && !b.etItemPrice.getText().toString().isEmpty()) {
+                    addItem(b.etItemName.getText().toString()
+                            , b.etItemPrice.getText().toString()
+                            , b.spinner.getSelectedItem().toString()
+                    );
+                }
             }
         });
     }
