@@ -7,7 +7,7 @@ public class CustomerModel {
     String address;
     String para;
     String phone;
- //   List<CartModel> cartList;
+    String id;
 
     public String getName() {
         return name;
@@ -25,14 +25,14 @@ public class CustomerModel {
         return phone;
     }
 
-//    public List<CartModel> getCartList() {
-//        return cartList;
-//    }
-    public CustomerModel(String name, String address, String para, String phone) {
+    public String getId() {
+        return id;
+    }
+    public CustomerModel(String name, String address, String para, String phone,String id) {
         this.name = name;
         this.address = address;
         this.para = para;
         this.phone = phone;
-      //  this.cartList = cartList;
+        this.id = id;
     }
 }
