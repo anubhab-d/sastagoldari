@@ -25,6 +25,7 @@ private FirebaseFirestore firestore;
 ArrayList<String> itemNames = new ArrayList<>();
 ArrayList<String> itemQty = new ArrayList<>();
 ArrayList<String> itemPrice = new ArrayList<>();
+ArrayList<String> itemUnit = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +36,8 @@ ArrayList<String> itemPrice = new ArrayList<>();
             CartModel model = MainActivity.cartList.get(i);
             itemNames.add(model.getName());
             itemQty.add(model.getQty());
-            double total = Double.parseDouble(MainActivity.cartList.get(i).getPrice().substring(1)) * Double.parseDouble(MainActivity.cartList.get(i).getQty());
-            itemPrice.add(Double.toString(total));
+            itemUnit.add(model.getUnit());
+            itemPrice.add(model.getPrice());
         }
        b.orderNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +49,8 @@ ArrayList<String> itemPrice = new ArrayList<>();
                         b.etCusPh.getText().toString(),
                         itemNames,
                         itemQty,
-                        itemPrice
+                        itemPrice,
+                        itemUnit
                 );
             }
         });
@@ -60,7 +62,8 @@ ArrayList<String> itemPrice = new ArrayList<>();
                          String phone,
                          List<String> orderItemNames,
                          List<String> orderItemQty,
-                         List<String> orderItemPrice) {
+                         List<String> orderItemPrice,
+                         List<String> orderItemUnit) {
         Map<String, Object> item = new HashMap<>();
         item.put("name", name);
         item.put("address", address);
@@ -69,6 +72,7 @@ ArrayList<String> itemPrice = new ArrayList<>();
         item.put("orderItemNames", orderItemNames);
         item.put("orderItemQty", orderItemQty);
         item.put("orderItemPrice", orderItemPrice);
+        item.put("orderItemUnit", orderItemUnit);
         item.put("orderStatus","pending");
         firestore.collection("orders")
                 .add(item)

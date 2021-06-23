@@ -23,7 +23,7 @@ public class ViewOrderDialogAdapter extends RecyclerView.Adapter<ViewOrderDialog
        holder.txtIName.setText(list.get(position).getName());
        holder.txtIPrice.setText(list.get(position).getPrice()+"/"+list.get(position).getUnit());
        holder.txtIQuantity.setText(list.get(position).getQty()+ " "+list.get(position).getUnit());
-        double total = Double.parseDouble(list.get(position).getPrice()) * Double.parseDouble(list.get(position).getQty());
+        double total = Double.parseDouble(list.get(position).getPrice().substring(1)) * Double.parseDouble(list.get(position).getQty());
        holder.txtITotal.setText(list.get(position).getPrice()+ "×" +list.get(position).getQty()+"= ₹"+Double.toString(total));
     }
 

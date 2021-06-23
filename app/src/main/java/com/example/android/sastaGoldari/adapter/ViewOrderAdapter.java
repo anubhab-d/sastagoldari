@@ -61,7 +61,6 @@ public class ViewOrderAdapter extends RecyclerView.Adapter<ViewOrderAdapter.View
                         R.layout.view_order_dialog, null
                 );
                 listInit(customLayout);
-                // adapter.updateList((ArrayList<CartModel>) list.get(position).getCartList());
                 firestore.collection("orders")
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -88,15 +87,11 @@ public class ViewOrderAdapter extends RecyclerView.Adapter<ViewOrderAdapter.View
                                             cartList.clear();
                                         }
                                     }
-                                    // Log.d("chk_list2",Integer.toString(list.get(1).getCartList().size()));
-                                    ConstCode.showToast(context,"Mashallah..");
                                 } else {
-                                    // Log.w(TAG, "Error getting documents.", task.getException());
                                     ConstCode.showToast(context,"Something went wrong...");
                                 }
                             }
                         });
-            //    rvViewOrderItem.setAdapter(adapter);
             }
         });
     }
