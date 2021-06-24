@@ -1,5 +1,6 @@
 package com.example.android.sastaGoldari.adapter;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.android.sastaGoldari.R;
 import com.example.android.sastaGoldari.interfaces.OnButtonClicked;
 import com.example.android.sastaGoldari.model.SellingItems;
@@ -21,8 +23,10 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     public ArrayList<String> itemlist = new ArrayList<>();
     int sum=0;
     OnButtonClicked click;
-    public ItemAdapter(OnButtonClicked click){
+    Context context;
+    public ItemAdapter(OnButtonClicked click, Context context){
         this.click = click;
+        this.context = context;
     }
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -37,7 +41,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         holder.unit.setText(list.get(position).getUnit());
         holder.unit2.setText(list.get(position).getUnit());
         holder.txtItemId.setText(list.get(position).getId());
-
+        Glide.with(context).load(list.get(position).getImgL()).into(holder.itemimg);
         holder.atc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,7 +77,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         ImageView itemimg;
         TextView txtItemId;
         TextView noti;
-
+        ImageView imgItem;
         public ItemViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
@@ -87,6 +91,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             itemimg = itemView.findViewById(R.id.imgItem);
             txtItemId = itemView.findViewById(R.id.txtItemId);
             noti = itemView.findViewById(R.id.txtNoti);
+
             plus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

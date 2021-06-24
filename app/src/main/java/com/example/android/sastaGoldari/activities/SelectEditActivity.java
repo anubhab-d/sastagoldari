@@ -31,7 +31,7 @@ import java.util.ArrayList;
 public class SelectEditActivity extends AppCompatActivity implements OnProductButtonsClicked {
     ArrayList<SellingItems> list = new ArrayList<>();
     FirebaseFirestore firestore;
-    ProductMaintainAdapter adapter = new ProductMaintainAdapter(this);
+    ProductMaintainAdapter adapter = new ProductMaintainAdapter(this,this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +52,9 @@ public class SelectEditActivity extends AppCompatActivity implements OnProductBu
                                 String name = document.getString("name");
                                 String price = document.getString("price");
                                 String unit = document.getString("unit");
+                                String imgL = document.getString("imgL");
                                 String id = document.getId();
-                                list.add(new SellingItems(name, price, unit, id));
+                                list.add(new SellingItems(name, price, unit, id, imgL));
                                 adapter.updateList(list);
                                 rvProduct.setAdapter(adapter);
                             }

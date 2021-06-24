@@ -1,13 +1,16 @@
 package com.example.android.sastaGoldari.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.android.sastaGoldari.R;
 import com.example.android.sastaGoldari.interfaces.OnProductButtonsClicked;
 import com.example.android.sastaGoldari.model.SellingItems;
@@ -17,8 +20,10 @@ import java.util.ArrayList;
 public class ProductMaintainAdapter extends RecyclerView.Adapter<ProductMaintainAdapter.ProductMaintaiViewHolder> {
     ArrayList<SellingItems> list = new ArrayList<>();
     OnProductButtonsClicked click;
-    public ProductMaintainAdapter(OnProductButtonsClicked click){
+    Context context;
+    public ProductMaintainAdapter(OnProductButtonsClicked click, Context context){
         this.click = click;
+        this.context = context;
     }
 
     @Override
@@ -43,6 +48,7 @@ public class ProductMaintainAdapter extends RecyclerView.Adapter<ProductMaintain
                 click.onDeleteButtonClicked(position,list.get(position).getId());
             }
         });
+        Glide.with(context).load(list.get(position).getImgL()).into(holder.imgI);
     }
 
     @Override
@@ -61,13 +67,14 @@ public class ProductMaintainAdapter extends RecyclerView.Adapter<ProductMaintain
         TextView etPPrice;
         Button btnEdit;
         Button btnDelete;
-
+        ImageView imgI;
         public ProductMaintaiViewHolder(View itemView) {
             super(itemView);
             etPName = itemView.findViewById(R.id.etPName);
             etPPrice = itemView.findViewById(R.id.etPPrice);
             btnEdit = itemView.findViewById(R.id.btnEdit);
             btnDelete = itemView.findViewById(R.id.btnDelete);
+            imgI = itemView.findViewById(R.id.imgI);
         }
     }
 }

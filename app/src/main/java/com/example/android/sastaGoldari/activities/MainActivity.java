@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements OnButtonClicked {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RecyclerView rvItems =findViewById(R.id.rvItems);
-        ItemAdapter adapter = new ItemAdapter(this);
+        ItemAdapter adapter = new ItemAdapter(this,this);
          txtNoti = findViewById(R.id.txtNoti);
         db = FirebaseFirestore.getInstance();
         db.collection("items")
@@ -49,8 +49,9 @@ public class MainActivity extends AppCompatActivity implements OnButtonClicked {
                                 String name = document.getString("name");
                                 String price = document.getString("price");
                                 String unit = document.getString("unit");
+                                String imgL = document.getString("imgL");
                                 String id = document.getId();
-                                list.add(new SellingItems(name,price,unit,id));
+                                list.add(new SellingItems(name,price,unit,id,imgL));
                                 rvItems.setLayoutManager(new GridLayoutManager(MainActivity.this,2));
                                 adapter.updateList(list);
                                 rvItems.setAdapter(adapter);

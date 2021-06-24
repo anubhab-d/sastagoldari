@@ -5,6 +5,7 @@ public class SellingItems {
     String price;
     String unit;
     String id;
+    String imgL;
 
     public String getName() {
         return name;
@@ -22,10 +23,12 @@ public class SellingItems {
         return id;
     }
 
-    public SellingItems(String name, String price, String unit, String id) {
+    public String getImgL() { return imgL; }
+    public SellingItems(String name, String price, String unit, String id, String imgL) {
         this.name = name;
         this.price = price;
         this.unit = unit;
         this.id = id;
+        this.imgL = imgL;
     }
 }
