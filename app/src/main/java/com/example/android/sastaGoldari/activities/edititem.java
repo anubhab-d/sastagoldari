@@ -40,43 +40,40 @@ public class edititem extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-         /*       if(btnEditItem.etItemName.getText().toString().isEmpty()){
-                    btnEditItem.etItemName.setError("Item's Name can't be empty");
+                if(etProductName.getText().toString().isEmpty()){
+                    etProductName.setError("Item's Name can't be empty");
                 }
-                if(b.etItemPrice.getText().toString().isEmpty()){
-                    b.etItemPrice.setError("Item's Price can't be empty");
+                if(etProductPrice.getText().toString().isEmpty()){
+                    etProductPrice.setError("Item's Price can't be empty");
                 }
-                if(!b.etItemName.getText().toString().isEmpty() && !b.etItemPrice.getText().toString().isEmpty()) {
-                    addItem(b.etItemName.getText().toString()
-                            , b.etItemPrice.getText().toString()
-                            , b.spinner.getSelectedItem().toString()
-                    );
-                }*/
+                if(!etProductName.getText().toString().isEmpty() && !etProductPrice.getText().toString().isEmpty()) {
+                    Map<String,Object> data = new HashMap<>();
+                    data.put("name",etProductName.getText().toString());
+                    data.put("price",etProductPrice.getText().toString());
+                    data.put("unit",dropdown.getSelectedItem());
+                    firestore.collection("items").document(id)
+                            .update(data)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    ConstCode.showToast(edititem.this,"Item Successfully Edited");
+                                    Intent i = new Intent(edititem.this,SelectEditActivity.class);
+                                    startActivity(i);
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    ConstCode.showToast(edititem.this,"Sorry! Can't Edit Your Item.");
+                                }
+                            });
+                }
+                }
 
 
 
 
-                Map<String,Object> data = new HashMap<>();
-                data.put("name",etProductName.getText().toString());
-                data.put("price",etProductPrice.getText().toString());
-                data.put("unit",dropdown.getSelectedItem());
-                firestore.collection("items").document(id)
-                        .update(data)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                ConstCode.showToast(edititem.this,"Item Successfully Edited");
-                                Intent i = new Intent(edititem.this,SelectEditActivity.class);
-                                startActivity(i);
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                ConstCode.showToast(edititem.this,"Sorry! Can't Edit Your Item.");
-                            }
-                        });
-            }
+
         });
     }
 }

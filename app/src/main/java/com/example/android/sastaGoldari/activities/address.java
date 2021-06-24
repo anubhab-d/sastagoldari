@@ -42,16 +42,35 @@ ArrayList<String> itemUnit = new ArrayList<>();
        b.orderNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addItem(
-                     b.etCusName.getText().toString(),
-                        b.etCusAddress.getText().toString(),
-                        b.etCusPara.getText().toString(),
-                        b.etCusPh.getText().toString(),
-                        itemNames,
-                        itemQty,
-                        itemPrice,
-                        itemUnit
-                );
+
+                if(b.etCusName.getText().toString().isEmpty()){
+                    b.etCusName.setError("Customer name can't be empty");
+                }
+                if(b.etCusAddress.getText().toString().isEmpty()){
+                    b.etCusAddress.setError("Address can't be empty");
+                }
+                if(b.etCusPara.getText().toString().isEmpty()){
+                    b.etCusPara.setError("Para can't be empty");
+                }
+                if(b.etCusPh.getText().toString().isEmpty()){
+                    b.etCusPh.setError("Phone number can't be empty");
+                }
+                if(!b.etCusName.getText().toString().isEmpty() && !b.etCusAddress.getText().toString().isEmpty() && !b.etCusPara.getText().toString().isEmpty() && !b.etCusPh.getText().toString().isEmpty()) {
+                    addItem(
+                            b.etCusName.getText().toString(),
+                            b.etCusAddress.getText().toString(),
+                            b.etCusPara.getText().toString(),
+                            b.etCusPh.getText().toString(),
+                            itemNames,
+                            itemQty,
+                            itemPrice,
+                            itemUnit
+                    );
+                }
+
+
+
+
             }
         });
 
