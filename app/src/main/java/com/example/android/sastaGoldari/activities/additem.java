@@ -101,7 +101,6 @@ public class additem extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            ConstCode.showToast(additem.this, "upload successful.");
                             storage.getReference()
                                     .child("images")
                                     .child("image" + imgUri.getLastPathSegment())
@@ -110,14 +109,18 @@ public class additem extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(Uri uri) {
                                             imgL = String.valueOf(uri);
+                                            Log.d("chk_img1",imgL);
+                                            addItem(b.etItemName.getText().toString()
+                                                    , b.etItemPrice.getText().toString()
+                                                    , b.spinner.getSelectedItem().toString(),
+                                                    imgL
+                                            );
                                         }
                                     });
-                            addItem(b.etItemName.getText().toString()
-                                    , b.etItemPrice.getText().toString()
-                                    , b.spinner.getSelectedItem().toString(),
-                                    imgL
-                            );
+                            Log.d("chk_img2",imgL);
+
                             progressDialog.dismiss();
+                            ConstCode.showToast(additem.this, "upload successful.");
                         }
                     }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                 @Override
