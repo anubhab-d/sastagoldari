@@ -11,21 +11,22 @@ import android.widget.TextView;
 
 import com.example.android.sastaGoldari.R;
 import com.example.android.sastaGoldari.adapter.CartListAdapter;
+import com.example.android.sastaGoldari.interfaces.OnCartListRemoveBtnClicked;
 import com.example.android.sastaGoldari.model.CartModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class reviewitems extends AppCompatActivity {
-
+public class reviewitems extends AppCompatActivity implements OnCartListRemoveBtnClicked {
+    ArrayList<CartModel> cartList = new ArrayList<>(MainActivity.cartList);
+    CartListAdapter adapter = new CartListAdapter(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reviewitems);
         FloatingActionButton next = findViewById(R.id.next);
         RecyclerView rvCartItem = findViewById(R.id.rvCartItem);
-        CartListAdapter adapter = new CartListAdapter();
-        ArrayList<CartModel> cartList = new ArrayList<>(MainActivity.cartList);
+
         rvCartItem.setLayoutManager(new LinearLayoutManager(this));
         rvCartItem.setAdapter(adapter);
         adapter.updateList(cartList);
@@ -46,6 +47,8 @@ public class reviewitems extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(reviewitems.this, address.class);
+                MainActivity.cartList.clear();
+                MainActivity.cartList.addAll(cartList);
                 startActivity(i);
             }
         });
@@ -55,5 +58,11 @@ public class reviewitems extends AppCompatActivity {
     public void onBackPressed() {
         MainActivity.cartList.clear();
         super.onBackPressed();
+    }
+
+    @Override
+    public void onCartListButtonClicked(int pos) {
+        cartList.remove(pos);
+        adapter.updateList(cartList);
     }
 }

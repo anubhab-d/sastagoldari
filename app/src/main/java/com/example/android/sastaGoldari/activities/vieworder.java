@@ -6,11 +6,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.android.sastaGoldari.R;
 import com.example.android.sastaGoldari.adapter.ViewOrderAdapter;
-import com.example.android.sastaGoldari.interfaces.OnViewOrderListBtnClicked;
+import com.example.android.sastaGoldari.interfaces.OnCartListRemoveBtnClicked;
 import com.example.android.sastaGoldari.model.CartModel;
 import com.example.android.sastaGoldari.model.CustomerModel;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,11 +18,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class vieworder extends AppCompatActivity implements OnViewOrderListBtnClicked {
+public class vieworder extends AppCompatActivity implements OnCartListRemoveBtnClicked {
 FirebaseFirestore firestore;
     String name;
     String address;
@@ -73,7 +71,7 @@ FirebaseFirestore firestore;
     }
 
     @Override
-    public void onListButtonClicked(int pos) {
+    public void onCartListButtonClicked(int pos) {
 
     }
 }

@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.sastaGoldari.R;
+import com.example.android.sastaGoldari.interfaces.OnCartListRemoveBtnClicked;
 import com.example.android.sastaGoldari.model.CartModel;
 
 import java.util.ArrayList;
@@ -16,6 +17,10 @@ import java.util.ArrayList;
 public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartListViewHolder> {
     ArrayList<CartModel> cartList = new ArrayList<>();
     ArrayList<CartModel> newCartList = new ArrayList<>(cartList);
+    OnCartListRemoveBtnClicked click;
+    public CartListAdapter(OnCartListRemoveBtnClicked click){
+        this.click = click;
+    }
     @Override
     public CartListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_list_item,parent,false);
@@ -30,13 +35,11 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
         holder.tblQuantity.setText(cartList.get(position).getQty()+ " "+cartList.get(position).getUnit());
         double total = Double.parseDouble(cartList.get(position).getPrice().substring(1)) * Double.parseDouble(cartList.get(position).getQty());
         holder.tblTotal.setText(cartList.get(position).getPrice()+ "×" +cartList.get(position).getQty()+"= ₹"+Double.toString(total));
-
-
-
         holder.tblRemoveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cartList.remove(position);
+               // cartList.remove(position);
+                click.onCartListButtonClicked(position);
                 notifyDataSetChanged();
             }
         });

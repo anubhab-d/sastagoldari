@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.sastaGoldari.R;
-import com.example.android.sastaGoldari.interfaces.OnViewOrderListBtnClicked;
+import com.example.android.sastaGoldari.interfaces.OnCartListRemoveBtnClicked;
 import com.example.android.sastaGoldari.model.CartModel;
 import com.example.android.sastaGoldari.model.CustomerModel;
 import com.example.android.sastaGoldari.utils.ConstCode;
@@ -29,14 +29,14 @@ import java.util.List;
 
 public class ViewOrderAdapter extends RecyclerView.Adapter<ViewOrderAdapter.ViewOrderViewHolder> {
     ArrayList<CustomerModel> list = new ArrayList<>();
-    OnViewOrderListBtnClicked listBtnClick;
+    OnCartListRemoveBtnClicked listBtnClick;
     Context context;
     RecyclerView rvViewOrderItem;
     FirebaseFirestore firestore;
     ViewOrderDialogAdapter adapter = new ViewOrderDialogAdapter();
     List<CartModel> cartList = new ArrayList<>();
 
-    public ViewOrderAdapter(OnViewOrderListBtnClicked listBtnClick, Context context) {
+    public ViewOrderAdapter(OnCartListRemoveBtnClicked listBtnClick, Context context) {
         this.listBtnClick = listBtnClick;
         this.context = context;
     }
