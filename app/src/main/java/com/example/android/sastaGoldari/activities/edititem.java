@@ -39,6 +39,23 @@ public class edititem extends AppCompatActivity {
         btnEditItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+         /*       if(btnEditItem.etItemName.getText().toString().isEmpty()){
+                    btnEditItem.etItemName.setError("Item's Name can't be empty");
+                }
+                if(b.etItemPrice.getText().toString().isEmpty()){
+                    b.etItemPrice.setError("Item's Price can't be empty");
+                }
+                if(!b.etItemName.getText().toString().isEmpty() && !b.etItemPrice.getText().toString().isEmpty()) {
+                    addItem(b.etItemName.getText().toString()
+                            , b.etItemPrice.getText().toString()
+                            , b.spinner.getSelectedItem().toString()
+                    );
+                }*/
+
+
+
+
                 Map<String,Object> data = new HashMap<>();
                 data.put("name",etProductName.getText().toString());
                 data.put("price",etProductPrice.getText().toString());

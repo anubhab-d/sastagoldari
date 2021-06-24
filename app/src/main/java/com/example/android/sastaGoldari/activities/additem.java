@@ -1,18 +1,26 @@
 package com.example.android.sastaGoldari.activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.android.sastaGoldari.R;
 import com.example.android.sastaGoldari.databinding.ActivityAdditemBinding;
 import com.example.android.sastaGoldari.utils.ConstCode;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -20,7 +28,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class additem extends AppCompatActivity {
-private FirebaseFirestore firestore;
+    ImageView cover;
+    FloatingActionButton fab;
+    private FirebaseFirestore firestore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +39,24 @@ private FirebaseFirestore firestore;
         firestore = FirebaseFirestore.getInstance();
         String[] items = new String[]{"kg", "qty"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+
+        cover = (ImageView)findViewById(R.id.imageView3);
+        fab = (FloatingActionButton)findViewById(R.id.floatingActionButton);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ImagePicker.with(additem.this)
+                        .crop()	    			//Crop image(Optional), Check Customization for more option
+                        .compress(1024)			//Final image size will be less than 1 MB(Optional)
+                        .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+                        .start();
+            }
+        });
+
+
+
+
         b.spinner.setAdapter(adapter);
         b.button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +76,19 @@ private FirebaseFirestore firestore;
             }
         });
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Uri uri = data.getData();
+        cover.setImageURI(uri);
+
+    }
+
+
+
+
 
     private void addItem(String name, String price, String unit) {
         Map<String, Object> item = new HashMap<>();
