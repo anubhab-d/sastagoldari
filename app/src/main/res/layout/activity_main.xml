@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/download"
     tools:context=".activities.MainActivity">
 
@@ -47,9 +48,7 @@
                     android:layout_height="50dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="6dp"
-                    android:src="@drawable/cart"
-
-                    />
+                    android:src="@drawable/cart" />
                 <ImageView
                     android:id="@+id/noti_back"
                     android:layout_width="100dp"
@@ -57,10 +56,7 @@
                     android:layout_toRightOf="@+id/cart"
                     android:layout_marginLeft="-10dp"
                     android:layout_marginTop="-10dp"
-                    android:src="@drawable/redcircle"
-
-
-                    />
+                    android:src="@drawable/redcircle" />
 
                 <TextView
                     android:id="@+id/txtNoti"
@@ -71,11 +67,18 @@
                     android:src="@drawable/ic_round_lens_24"
                     android:text="0"
                     android:textColor="#FFFFFF" />
-
             </RelativeLayout>
-
-
         </RelativeLayout>
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/search_background"
+            app:iconifiedByDefault="false"
+            app:queryHint="Search..." />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvItems"

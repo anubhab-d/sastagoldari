@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import androidx.appcompat.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.android.sastaGoldari.R;
@@ -28,16 +30,18 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements OnButtonClicked {
   ArrayList<SellingItems> list = new ArrayList<>();
+    ItemAdapter adapter;
   public static ArrayList<CartModel> cartList = new ArrayList<>();
   FirebaseFirestore db;
     TextView txtNoti;
+    SearchView searchItem;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RecyclerView rvItems =findViewById(R.id.rvItems);
-        ItemAdapter adapter = new ItemAdapter(this,this);
          txtNoti = findViewById(R.id.txtNoti);
+         searchItem = findViewById(R.id.searchItem);
         db = FirebaseFirestore.getInstance();
         db.collection("items")
                 .get()
@@ -53,7 +57,8 @@ public class MainActivity extends AppCompatActivity implements OnButtonClicked {
                                 String id = document.getId();
                                 list.add(new SellingItems(name,price,unit,id,imgL));
                                 rvItems.setLayoutManager(new GridLayoutManager(MainActivity.this,2));
-                                adapter.updateList(list);
+                                adapter = new ItemAdapter(MainActivity.this,MainActivity.this, list);
+                                // adapter.updateList(list);
                                 rvItems.setAdapter(adapter);
                             }
                         } else {
@@ -110,6 +115,20 @@ public class MainActivity extends AppCompatActivity implements OnButtonClicked {
 
                 Intent i = new Intent(MainActivity.this, reviewitems.class);
                 startActivity(i);
+            }
+        });
+        searchItem.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                    newText.length();
+                    Log.d("chk_txt",newText.toString());
+                    adapter.getFilter().filter(newText);
+                return false;
             }
         });
     }
