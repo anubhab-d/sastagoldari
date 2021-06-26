@@ -2,10 +2,13 @@ package com.example.android.sastaGoldari.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,7 +21,10 @@ import com.example.android.sastaGoldari.interfaces.OnCartListRemoveBtnClicked;
 import com.example.android.sastaGoldari.model.CartModel;
 import com.example.android.sastaGoldari.model.CustomerModel;
 import com.example.android.sastaGoldari.utils.ConstCode;
+import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -32,7 +38,7 @@ public class ViewOrderAdapter extends RecyclerView.Adapter<ViewOrderAdapter.View
     OnCartListRemoveBtnClicked listBtnClick;
     Context context;
     RecyclerView rvViewOrderItem;
-    FirebaseFirestore firestore;
+    FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     ViewOrderDialogAdapter adapter = new ViewOrderDialogAdapter();
     List<CartModel> cartList = new ArrayList<>();
 
@@ -94,12 +100,89 @@ public class ViewOrderAdapter extends RecyclerView.Adapter<ViewOrderAdapter.View
                         });
             }
         });
+        holder.btnCancelOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firestore.collection("orders")
+                        .document(list.get(position).getId())
+                        .update("orderStatus","cancel")
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        ConstCode.showToast(context,"You have canceled the order.");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        ConstCode.showToast(context,"Sorry not able to process..");
+                    }
+                });
+            }
+        });
+        holder.btnMarkDeli.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firestore.collection("orders")
+                        .document(list.get(position).getId())
+                        .update("orderStatus","delivered")
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                ConstCode.showToast(context,"You have marked the order as delivered");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                ConstCode.showToast(context,"Sorry not able to process..");
+                            }
+                        });
+            }
+        });
+        holder.imgCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("⚠ Alert ⚠");
+                builder.setMessage("Do you want to delete the order history permanently?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        firestore.collection("orders")
+                                .document(list.get(position).getId())
+                                .delete()
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        ConstCode.showToast(context,"Order History Deleted Successfully.");
+                                                list.remove(position);
+                                                notifyDataSetChanged();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        ConstCode.showToast(context,"Sorry not able to process..");
+                                    }
+                                });
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builder.show();
+
+            }
+        });
     }
 
     private void listInit(View v) {
         rvViewOrderItem = v.findViewById(R.id.rvViewOrderItem);
         rvViewOrderItem.setLayoutManager(new LinearLayoutManager(context));
-        firestore = FirebaseFirestore.getInstance();
     }
 
     @Override
@@ -119,7 +202,9 @@ public class ViewOrderAdapter extends RecyclerView.Adapter<ViewOrderAdapter.View
         TextView etCPara;
         TextView etCPhone;
         ImageView imgList;
-
+        ImageView imgCancel;
+        Button btnCancelOrder;
+        Button btnMarkDeli;
         public ViewOrderViewHolder(@NonNull View itemView) {
             super(itemView);
             etCName = itemView.findViewById(R.id.etCName);
@@ -127,6 +212,9 @@ public class ViewOrderAdapter extends RecyclerView.Adapter<ViewOrderAdapter.View
             etCPara = itemView.findViewById(R.id.etCPara);
             etCPhone = itemView.findViewById(R.id.etCPhone);
             imgList = itemView.findViewById(R.id.imgList);
+            btnCancelOrder = itemView.findViewById(R.id.btnCancelOrder);
+            btnMarkDeli = itemView.findViewById(R.id.btnMarkDeli);
+            imgCancel = itemView.findViewById(R.id.imgCancel);
         }
     }
 }

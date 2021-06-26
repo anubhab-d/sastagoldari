@@ -125,8 +125,6 @@ public class MainActivity extends AppCompatActivity implements OnButtonClicked {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                    newText.length();
-                    Log.d("chk_txt",newText.toString());
                     adapter.getFilter().filter(newText);
                 return false;
             }

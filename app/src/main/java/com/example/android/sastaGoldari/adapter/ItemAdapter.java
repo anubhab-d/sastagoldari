@@ -66,13 +66,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         return data.size();
     }
 
-//    public void updateList(ArrayList newList) {
-//        data.clear();
-//        data.addAll(newList);
-//        dataFull.addAll(newList);
-//        notifyDataSetChanged();
-//    }
-
     @Override
     public Filter getFilter() {
         return exampleFilter;
@@ -83,7 +76,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             ArrayList<SellingItems> sample=new ArrayList<>();
             if(constraint.toString().length()<1)
             {
-                Log.d("chk_sample",Integer.toString(sample.size()));
                 sample.addAll(dataFull);
             }
             else {
@@ -105,9 +97,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             data.clear();
-            ArrayList<SellingItems> demo = new ArrayList<>();
-            demo.addAll((List)results.values);
-            Log.d("chk_data",Integer.toString(demo.size()));
             data.addAll((List)results.values);
             notifyDataSetChanged();
         }
