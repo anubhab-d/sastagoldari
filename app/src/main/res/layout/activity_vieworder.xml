@@ -6,9 +6,31 @@
     android:layout_height="match_parent"
     android:background="@drawable/bgintrod"
     tools:context=".activities.vieworder">
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilOrderStatus"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        app:boxStrokeWidth="1dp"
+        app:boxStrokeColor="#000000">
+
+        <AutoCompleteTextView
+            android:id="@+id/etOrderStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:drawableEnd="@drawable/arrow_drop_down"
+            android:textColorHint="#000000"
+            android:text="pending"
+            android:hint="Select Delivery Status" />
+    </com.google.android.material.textfield.TextInputLayout>
 <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/rvViewOrder"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_below="@id/tilOrderStatus"
     tools:listitem="@layout/view_order_item"/>
 </RelativeLayout>

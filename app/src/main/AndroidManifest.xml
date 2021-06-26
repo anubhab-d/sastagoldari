@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activities.SelectEditActivity"></activity>
-        <activity android:name=".activities.vieworder" />
+        <activity android:name=".activities.vieworder"
+            android:theme="@style/ViewOrderTheme"/>
         <activity android:name=".activities.deleteitem" />
         <activity android:name=".activities.edititem" />
         <activity android:name=".activities.additem" />

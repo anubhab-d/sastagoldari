@@ -3,13 +3,14 @@ package com.example.android.sastaGoldari.adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,7 +22,6 @@ import com.example.android.sastaGoldari.interfaces.OnCartListRemoveBtnClicked;
 import com.example.android.sastaGoldari.model.CartModel;
 import com.example.android.sastaGoldari.model.CustomerModel;
 import com.example.android.sastaGoldari.utils.ConstCode;
-import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -32,6 +32,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ViewOrderAdapter extends RecyclerView.Adapter<ViewOrderAdapter.ViewOrderViewHolder> {
     ArrayList<CustomerModel> list = new ArrayList<>();
@@ -59,6 +60,36 @@ public class ViewOrderAdapter extends RecyclerView.Adapter<ViewOrderAdapter.View
         holder.etCAddress.setText(list.get(position).getAddress());
         holder.etCPara.setText(list.get(position).getPara());
         holder.etCPhone.setText(list.get(position).getPhone());
+        firestore.collection("orders")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("chk_list3", document.getId());
+                                if (list.get(position).getId().equals(document.getId())) {
+                                    String itemStatus = document.getString("orderStatus");
+                                    if (Objects.equals(itemStatus, "pending")) {
+                                        holder.txtStatus.setText("pending");
+                                        holder.txtStatus.setTextColor(Color.parseColor("#c8b900"));
+                                        holder.llManageBtn.setVisibility(View.VISIBLE);
+                                    } else if (Objects.equals(itemStatus, "delivered")) {
+                                        holder.txtStatus.setText("delivered");
+                                        holder.txtStatus.setTextColor(Color.parseColor("#1b5e20"));
+                                        holder.llManageBtn.setVisibility(View.GONE);
+                                    } else if (Objects.equals(itemStatus, "canceled")) {
+                                        holder.txtStatus.setText("canceled");
+                                        holder.txtStatus.setTextColor(Color.parseColor("#FF0000"));
+                                        holder.llManageBtn.setVisibility(View.GONE);
+                                    }
+                                }
+                            }
+                        } else {
+                            ConstCode.showToast(context, "Something went wrong...");
+                        }
+                    }
+                });
         holder.imgList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +105,7 @@ public class ViewOrderAdapter extends RecyclerView.Adapter<ViewOrderAdapter.View
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
                                     for (QueryDocumentSnapshot document : task.getResult()) {
-                                        Log.d("chk_list3",document.getId());
+                                        Log.d("chk_list3", document.getId());
                                         if (list.get(position).getId().equals(document.getId())) {
                                             List<String> itemName = (List<String>) document.get("orderItemNames");
                                             List<String> itemPrice = (List<String>) document.get("orderItemPrice");
@@ -94,7 +125,7 @@ public class ViewOrderAdapter extends RecyclerView.Adapter<ViewOrderAdapter.View
                                         }
                                     }
                                 } else {
-                                    ConstCode.showToast(context,"Something went wrong...");
+                                    ConstCode.showToast(context, "Something went wrong...");
                                 }
                             }
                         });
@@ -105,19 +136,19 @@ public class ViewOrderAdapter extends RecyclerView.Adapter<ViewOrderAdapter.View
             public void onClick(View v) {
                 firestore.collection("orders")
                         .document(list.get(position).getId())
-                        .update("orderStatus","cancel")
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        ConstCode.showToast(context,"You have canceled the order.");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        ConstCode.showToast(context,"Sorry not able to process..");
-                    }
-                });
+                        .update("orderStatus", "canceled")
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                ConstCode.showToast(context, "You have canceled the order.");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                ConstCode.showToast(context, "Sorry not able to process..");
+                            }
+                        });
             }
         });
         holder.btnMarkDeli.setOnClickListener(new View.OnClickListener() {
@@ -125,17 +156,17 @@ public class ViewOrderAdapter extends RecyclerView.Adapter<ViewOrderAdapter.View
             public void onClick(View v) {
                 firestore.collection("orders")
                         .document(list.get(position).getId())
-                        .update("orderStatus","delivered")
+                        .update("orderStatus", "delivered")
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                                ConstCode.showToast(context,"You have marked the order as delivered");
+                                ConstCode.showToast(context, "You have marked the order as delivered");
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                ConstCode.showToast(context,"Sorry not able to process..");
+                                ConstCode.showToast(context, "Sorry not able to process..");
                             }
                         });
             }
@@ -155,15 +186,15 @@ public class ViewOrderAdapter extends RecyclerView.Adapter<ViewOrderAdapter.View
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
-                                        ConstCode.showToast(context,"Order History Deleted Successfully.");
-                                                list.remove(position);
-                                                notifyDataSetChanged();
+                                        ConstCode.showToast(context, "Order History Deleted Successfully.");
+                                        list.remove(position);
+                                        notifyDataSetChanged();
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
-                                        ConstCode.showToast(context,"Sorry not able to process..");
+                                        ConstCode.showToast(context, "Sorry not able to process..");
                                     }
                                 });
                     }
@@ -205,6 +236,9 @@ public class ViewOrderAdapter extends RecyclerView.Adapter<ViewOrderAdapter.View
         ImageView imgCancel;
         Button btnCancelOrder;
         Button btnMarkDeli;
+        TextView txtStatus;
+        LinearLayout llManageBtn;
+
         public ViewOrderViewHolder(@NonNull View itemView) {
             super(itemView);
             etCName = itemView.findViewById(R.id.etCName);
@@ -215,6 +249,8 @@ public class ViewOrderAdapter extends RecyclerView.Adapter<ViewOrderAdapter.View
             btnCancelOrder = itemView.findViewById(R.id.btnCancelOrder);
             btnMarkDeli = itemView.findViewById(R.id.btnMarkDeli);
             imgCancel = itemView.findViewById(R.id.imgCancel);
+            txtStatus = itemView.findViewById(R.id.txtStatus);
+            llManageBtn = itemView.findViewById(R.id.llManageBtn);
         }
     }
 }
