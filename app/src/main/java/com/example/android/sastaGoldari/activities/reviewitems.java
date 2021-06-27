@@ -21,12 +21,23 @@ import java.util.ArrayList;
 public class reviewitems extends AppCompatActivity implements OnCartListRemoveBtnClicked {
     ArrayList<CartModel> cartList = new ArrayList<>(MainActivity.cartList);
     CartListAdapter adapter = new CartListAdapter(this);
+    TextView txtGrandTotal;
+    double grandTotal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reviewitems);
         FloatingActionButton next = findViewById(R.id.next);
         RecyclerView rvCartItem = findViewById(R.id.rvCartItem);
+        txtGrandTotal = findViewById(R.id.txtGrandTotal);
+        if(cartList.isEmpty()){
+            txtGrandTotal.setText("0.0");
+        } else {
+            for (int i = 0; i < cartList.size(); i++) {
+                grandTotal += (Double.parseDouble(cartList.get(i).getPrice().substring(1)) * Double.parseDouble(cartList.get(i).getQty()));
+            }
+            txtGrandTotal.setText(String.valueOf(grandTotal));
+        }
 
         rvCartItem.setLayoutManager(new LinearLayoutManager(this));
         rvCartItem.setAdapter(adapter);
