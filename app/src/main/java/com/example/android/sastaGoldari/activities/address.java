@@ -1,8 +1,10 @@
 package com.example.android.sastaGoldari.activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -99,8 +101,30 @@ ArrayList<String> itemUnit = new ArrayList<>();
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         ConstCode.showToast(address.this,"Order Placed Successfully.");
-                        Intent i = new Intent(address.this, thankyou.class);
-                        startActivity(i);
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(address.this);
+                        dialog.setTitle("🙏 Thank You 🙏");
+                        dialog.setMessage("Your Order is Placed Successfully!!!");
+                        dialog.setCancelable(false);
+                        dialog.setPositiveButton("Continue Shopping", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(address.this, MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                intent.putExtra("EXIT", false);
+                                startActivity(intent);
+                            }
+                        });
+                        dialog.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                    // finish();
+                                Intent intent = new Intent(address.this, MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                intent.putExtra("EXIT", true);
+                                startActivity(intent);
+                            }
+                        });
+                        dialog.show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

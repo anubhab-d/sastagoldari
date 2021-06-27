@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,6 +32,7 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity implements OnButtonClicked {
   ArrayList<SellingItems> list = new ArrayList<>();
     ItemAdapter adapter;
+    ProgressDialog progressDialog;
   public static ArrayList<CartModel> cartList = new ArrayList<>();
   FirebaseFirestore db;
     TextView txtNoti;
@@ -38,10 +40,15 @@ public class MainActivity extends AppCompatActivity implements OnButtonClicked {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        exit();
         setContentView(R.layout.activity_main);
         RecyclerView rvItems =findViewById(R.id.rvItems);
          txtNoti = findViewById(R.id.txtNoti);
          searchItem = findViewById(R.id.searchItem);
+         progressDialog = new ProgressDialog(this);
+         progressDialog.setTitle("Loading...");
+         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+         progressDialog.show();
         db = FirebaseFirestore.getInstance();
         db.collection("items")
                 .get()
@@ -61,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements OnButtonClicked {
                                 // adapter.updateList(list);
                                 rvItems.setAdapter(adapter);
                             }
+                            progressDialog.dismiss();
                         } else {
                             ConstCode.showToast(MainActivity.this,"Sorry Can't Load");
                         }
@@ -129,6 +137,13 @@ public class MainActivity extends AppCompatActivity implements OnButtonClicked {
                 return false;
             }
         });
+    }
+
+    private void exit() {
+        if (getIntent().getBooleanExtra("EXIT", false))
+        {
+            finish();
+        }
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.android.sastaGoldari.activities;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,13 +33,17 @@ public class SelectEditActivity extends AppCompatActivity implements OnProductBu
     ArrayList<SellingItems> list = new ArrayList<>();
     FirebaseFirestore firestore;
     ProductMaintainAdapter adapter = new ProductMaintainAdapter(this,this);
-
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_edit);
         RecyclerView rvProduct = findViewById(R.id.rvProduct);
         FloatingActionButton btnAddItem = findViewById(R.id.btnAddItem);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Loading...");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.show();
         ImageView imgViewOrder = findViewById(R.id.imgViewOrder);
         rvProduct.setLayoutManager(new LinearLayoutManager(this));
         firestore = FirebaseFirestore.getInstance();
@@ -55,10 +60,12 @@ public class SelectEditActivity extends AppCompatActivity implements OnProductBu
                                 String imgL = document.getString("imgL");
                                 String id = document.getId();
                                 list.add(new SellingItems(name, price, unit, id, imgL));
+                                progressDialog.dismiss();
                                 adapter.updateList(list);
                                 rvProduct.setAdapter(adapter);
                             }
                         } else {
+                            progressDialog.dismiss();
                             ConstCode.showToast(SelectEditActivity.this, "Sorry!! Can't Load Your Items.");
                         }
                     }

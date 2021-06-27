@@ -13,6 +13,7 @@ import com.example.android.sastaGoldari.R;
 import com.example.android.sastaGoldari.adapter.CartListAdapter;
 import com.example.android.sastaGoldari.interfaces.OnCartListRemoveBtnClicked;
 import com.example.android.sastaGoldari.model.CartModel;
+import com.example.android.sastaGoldari.utils.ConstCode;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -46,10 +47,14 @@ public class reviewitems extends AppCompatActivity implements OnCartListRemoveBt
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(reviewitems.this, address.class);
-                MainActivity.cartList.clear();
-                MainActivity.cartList.addAll(cartList);
-                startActivity(i);
+                if(cartList.isEmpty()){
+                    ConstCode.showToast(reviewitems.this,"Sorry!! Your cart is empty");
+                }else {
+                    Intent i = new Intent(reviewitems.this, address.class);
+                    MainActivity.cartList.clear();
+                    MainActivity.cartList.addAll(cartList);
+                    startActivity(i);
+                }
             }
         });
     }

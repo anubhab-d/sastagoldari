@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -39,6 +40,7 @@ FirebaseFirestore firestore;
     List<CartModel> cartList = new ArrayList<>();
     AutoCompleteTextView etOrderStatus;
     ArrayAdapter statusAdapter;
+    ProgressDialog progressDialog;
     String[] statusList = {"pending","canceled","delivered"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,10 @@ FirebaseFirestore firestore;
         setContentView(R.layout.activity_vieworder);
         firestore = FirebaseFirestore.getInstance();
         etOrderStatus = findViewById(R.id.etOrderStatus);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Loading...");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.show();
         RecyclerView rvViewOrder = findViewById(R.id.rvViewOrder);
         ViewOrderAdapter adapter = new ViewOrderAdapter(this,this);
         rvViewOrder.setAdapter(adapter);
@@ -62,6 +68,7 @@ FirebaseFirestore firestore;
                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    progressDialog.show();
                                     if (task.isSuccessful()) {
                                         for (QueryDocumentSnapshot document : task.getResult()) {
                                             name = document.getString("name");
@@ -74,6 +81,7 @@ FirebaseFirestore firestore;
                                                 list.add(new CustomerModel(name, address, para, phone, id));
                                             }
                                         }
+                                        progressDialog.dismiss();
                                         adapter.updateList(list);
                                         list.clear();
                                       //  rvViewOrder.setAdapter(adapter);
@@ -88,6 +96,7 @@ FirebaseFirestore firestore;
                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    progressDialog.show();
                                     if (task.isSuccessful()) {
                                         for (QueryDocumentSnapshot document : task.getResult()) {
                                             name = document.getString("name");
@@ -101,6 +110,7 @@ FirebaseFirestore firestore;
                                                 list.add(new CustomerModel(name, address, para, phone, id));
                                             }
                                         }
+                                        progressDialog.dismiss();
                                         adapter.updateList(list);
                                         list.clear();
                                      //   rvViewOrder.setAdapter(adapter);
@@ -115,6 +125,7 @@ FirebaseFirestore firestore;
                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    progressDialog.show();
                                     if (task.isSuccessful()) {
                                         for (QueryDocumentSnapshot document : task.getResult()) {
                                             name = document.getString("name");
@@ -128,6 +139,7 @@ FirebaseFirestore firestore;
                                             }
 
                                         }
+                                        progressDialog.dismiss();
                                         adapter.updateList(list);
                                         list.clear();
                                        // rvViewOrder.setAdapter(adapter);
@@ -144,6 +156,7 @@ FirebaseFirestore firestore;
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        progressDialog.show();
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                  name = document.getString("name");
@@ -156,6 +169,7 @@ FirebaseFirestore firestore;
                                     list.add(new CustomerModel(name, address, para, phone, id));
                                 }
                             }
+                            progressDialog.dismiss();
                             adapter.updateList(list);
                             list.clear();
                         } else {
