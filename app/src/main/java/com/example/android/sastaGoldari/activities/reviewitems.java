@@ -23,6 +23,7 @@ public class reviewitems extends AppCompatActivity implements OnCartListRemoveBt
     CartListAdapter adapter = new CartListAdapter(this);
     TextView txtGrandTotal;
     double grandTotal;
+    TextView n;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +44,7 @@ public class reviewitems extends AppCompatActivity implements OnCartListRemoveBt
         rvCartItem.setAdapter(adapter);
         adapter.updateList(cartList);
         int itemCount = cartList.size();
-        TextView n = (TextView) findViewById(R.id.tvCartItemCnt);
+        n = (TextView) findViewById(R.id.tvCartItemCnt);
         if(itemCount>1){
             n.setText(""+itemCount+" items found");
         }
@@ -80,5 +81,20 @@ public class reviewitems extends AppCompatActivity implements OnCartListRemoveBt
     public void onCartListButtonClicked(int pos) {
         cartList.remove(pos);
         adapter.updateList(cartList);
+        if(cartList.isEmpty()){
+            txtGrandTotal.setText("0.0");
+        } else {
+            for (int i = 0; i < cartList.size(); i++) {
+                grandTotal += (Double.parseDouble(cartList.get(i).getPrice().substring(1)) * Double.parseDouble(cartList.get(i).getQty()));
+            }
+            txtGrandTotal.setText(String.valueOf(grandTotal));
+        }
+        int itemCount = cartList.size();
+        if(itemCount>1){
+            n.setText(""+itemCount+" items found");
+        }
+        else{
+            n.setText(""+itemCount+" item found");
+        }
     }
 }
