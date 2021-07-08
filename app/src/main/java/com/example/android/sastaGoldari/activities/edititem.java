@@ -19,12 +19,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.android.sastaGoldari.R;
 import com.example.android.sastaGoldari.utils.ConstCode;
 import com.github.dhaval2404.imagepicker.ImagePicker;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
@@ -67,9 +72,9 @@ public class edititem extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ImagePicker.with(edititem.this)
-                        .crop()	    			//Crop image(Optional), Check Customization for more option
-                        .compress(1024)			//Final image size will be less than 1 MB(Optional)
-                        .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+                        .crop()                    //Crop image(Optional), Check Customization for more option
+                        .compress(1024)            //Final image size will be less than 1 MB(Optional)
+                        .maxResultSize(1080, 1080)    //Final image resolution will be less than 1080 x 1080(Optional)
                         .start();
             }
         });
@@ -84,10 +89,98 @@ public class edititem extends AppCompatActivity {
                     etProductPrice.setError("Item's Price can't be empty");
                 }
                 if (!etProductName.getText().toString().isEmpty() && !etProductPrice.getText().toString().isEmpty()) {
+                    valueUpdate();
                     imgUpdate();
+                    // imgDelete();
                 }
             }
         });
+        Log.d("tag_chk1", "working");
+        preValueSet();
+    }
+
+    private void valueUpdate() {
+        Map<String, Object> data = new HashMap<>();
+        data.put("name", etProductName.getText().toString());
+        data.put("price", etProductPrice.getText().toString());
+        data.put("unit", dropdown.getSelectedItem());
+        // data.put("imgL",imgL);
+        //imgDelete();
+        firestore.collection("items").document(id)
+                .update(data)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        ConstCode.showToast(edititem.this, "Item Successfully Edited");
+                        Intent i = new Intent(edititem.this, SelectEditActivity.class);
+                        startActivity(i);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        ConstCode.showToast(edititem.this, "Sorry! Can't Edit Your Item.");
+                    }
+                });
+    }
+
+    private void preValueSet() {
+        Log.d("chkId",id);
+        firestore.collection("items")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                if (document.getId().equals(id)) {
+                                    String name = document.getString("name");
+                                    String price = document.getString("price");
+                                    String unit = document.getString("unit");
+                                    etProductName.setText(name);
+                                    etProductPrice.setText(price);
+                                    dropdown.setPrompt(unit);
+                                    Log.d("tag_chk", name);
+                                    Log.d("tag_chk1", "working");
+                                }
+                            }
+
+                        } else {
+                            Log.d("tag_chk", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+    }
+
+    private void imgDelete() {
+        firestore.collection("items")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                if (document.getId().equals(id)) {
+                                    String imgLink = document.getString("imgL");
+                                    StorageReference imgRef = storage.getReferenceFromUrl(imgLink);
+                                    imgRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            ConstCode.showToast(edititem.this, "Img deleted successfully");
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            ConstCode.showToast(edititem.this, "can't delete img");
+                                        }
+                                    });
+                                }
+                            }
+                        } else {
+                            Log.w("tag", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
     }
 
     private void imgUpdate() {
@@ -114,21 +207,50 @@ public class edititem extends AppCompatActivity {
                                             data.put("name", etProductName.getText().toString());
                                             data.put("price", etProductPrice.getText().toString());
                                             data.put("unit", dropdown.getSelectedItem());
-                                            data.put("imgL",imgL);
-                                            firestore.collection("items").document(id)
-                                                    .update(data)
-                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            data.put("imgL", imgL);
+                                            //imgDelete();
+                                            firestore.collection("items")
+                                                    .get()
+                                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                                         @Override
-                                                        public void onSuccess(Void unused) {
-                                                            ConstCode.showToast(edititem.this, "Item Successfully Edited");
-                                                            Intent i = new Intent(edititem.this, SelectEditActivity.class);
-                                                            startActivity(i);
-                                                        }
-                                                    })
-                                                    .addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception e) {
-                                                            ConstCode.showToast(edititem.this, "Sorry! Can't Edit Your Item.");
+                                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                            if (task.isSuccessful()) {
+                                                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                                                    if (document.getId().equals(id)) {
+                                                                        String imgLink = document.getString("imgL");
+                                                                        StorageReference imgRef = storage.getReferenceFromUrl(imgLink);
+                                                                        imgRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                            @Override
+                                                                            public void onSuccess(Void unused) {
+                                                                                ConstCode.showToast(edititem.this, "Img deleted successfully");
+                                                                                firestore.collection("items").document(id)
+                                                                                        .update(data)
+                                                                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                                            @Override
+                                                                                            public void onSuccess(Void unused) {
+                                                                                                ConstCode.showToast(edititem.this, "Item Successfully Edited");
+                                                                                                Intent i = new Intent(edititem.this, SelectEditActivity.class);
+                                                                                                startActivity(i);
+                                                                                            }
+                                                                                        })
+                                                                                        .addOnFailureListener(new OnFailureListener() {
+                                                                                            @Override
+                                                                                            public void onFailure(@NonNull Exception e) {
+                                                                                                ConstCode.showToast(edititem.this, "Sorry! Can't Edit Your Item.");
+                                                                                            }
+                                                                                        });
+                                                                            }
+                                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                                            @Override
+                                                                            public void onFailure(@NonNull Exception e) {
+                                                                                ConstCode.showToast(edititem.this, "can't delete img");
+                                                                            }
+                                                                        });
+                                                                    }
+                                                                }
+                                                            } else {
+                                                                Log.w("tag", "Error getting documents.", task.getException());
+                                                            }
                                                         }
                                                     });
                                         }
@@ -154,6 +276,7 @@ public class edititem extends AppCompatActivity {
             });
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
