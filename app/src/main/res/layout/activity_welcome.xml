@@ -12,7 +12,7 @@
         android:id="@+id/user"
         android:layout_width="182dp"
         android:layout_height="63dp"
-        android:background="#DF362D"
+        android:background="@drawable/custom_round"
         android:padding="10dp"
         android:shadowColor="#000000"
         android:text="বাজারে প্রবেশ করুন"

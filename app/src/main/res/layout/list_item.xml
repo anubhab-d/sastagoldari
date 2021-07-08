@@ -153,7 +153,7 @@
                 android:layout_height="35dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
-                android:background="#DF362D"
+                android:background="@drawable/custom_round"
                 android:text="Add to cart"
                 android:textColor="#FFFFFF"
                 android:textSize="8sp" />

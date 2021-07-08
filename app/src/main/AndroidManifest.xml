@@ -9,20 +9,34 @@
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.SelectEditActivity"></activity>
-        <activity android:name=".activities.vieworder"
-            android:theme="@style/ViewOrderTheme"/>
-        <activity android:name=".activities.deleteitem" />
-        <activity android:name=".activities.edititem" />
-        <activity android:name=".activities.additem" />
-        <activity android:name=".activities.Welcome" />
-        <activity android:name=".activities.thankyou" />
-        <activity android:name=".activities.address" />
-        <activity android:name=".activities.reviewitems" />
-
-        <activity android:name=".activities.logadmin" />
-        <activity android:name=".activities.MainActivity" />
-        <activity android:name=".activities.splashscreen">
+        <activity
+            android:name=".activities.SelectEditActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.vieworder"
+            android:theme="@style/ViewOrderTheme"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.deleteitem"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.edititem"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.additem"
+                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activities.Welcome"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.thankyou"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.address"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.reviewitems"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.logadmin"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.MainActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.splashscreen"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

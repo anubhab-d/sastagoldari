@@ -222,7 +222,6 @@ public class edititem extends AppCompatActivity {
                                                                         imgRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                             @Override
                                                                             public void onSuccess(Void unused) {
-                                                                                ConstCode.showToast(edititem.this, "Img deleted successfully");
                                                                                 firestore.collection("items").document(id)
                                                                                         .update(data)
                                                                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -236,7 +235,7 @@ public class edititem extends AppCompatActivity {
                                                                                         .addOnFailureListener(new OnFailureListener() {
                                                                                             @Override
                                                                                             public void onFailure(@NonNull Exception e) {
-                                                                                                ConstCode.showToast(edititem.this, "Sorry! Can't Edit Your Item.");
+                                                                                                Log.d("execption",e.toString());
                                                                                             }
                                                                                         });
                                                                             }
