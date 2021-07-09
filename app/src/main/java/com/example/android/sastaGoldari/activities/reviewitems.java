@@ -81,6 +81,7 @@ public class reviewitems extends AppCompatActivity implements OnCartListRemoveBt
     public void onCartListButtonClicked(int pos) {
         cartList.remove(pos);
         adapter.updateList(cartList);
+        grandTotal = 0;
         if(cartList.isEmpty()){
             txtGrandTotal.setText("0.0");
         } else {
