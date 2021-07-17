@@ -1,9 +1,11 @@
 package com.example.android.sastaGoldari.activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +25,7 @@ public class reviewitems extends AppCompatActivity implements OnCartListRemoveBt
     CartListAdapter adapter = new CartListAdapter(this);
     TextView txtGrandTotal;
     double grandTotal;
+    boolean cnt = true;
     TextView n;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,8 +76,13 @@ public class reviewitems extends AppCompatActivity implements OnCartListRemoveBt
 
     @Override
     public void onBackPressed() {
-        MainActivity.cartList.clear();
-        super.onBackPressed();
+        if(cnt){
+            cnt = false;
+            ConstCode.showToast(reviewitems.this,"If you go back, your cart item will be lost.");
+        } else {
+            MainActivity.cartList.clear();
+            super.onBackPressed();
+        }
     }
 
     @Override

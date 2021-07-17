@@ -139,6 +139,12 @@ public class MainActivity extends AppCompatActivity implements OnButtonClicked {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        txtNoti.setText("0");
+    }
+
     private void exit() {
         if (getIntent().getBooleanExtra("EXIT", false))
         {
