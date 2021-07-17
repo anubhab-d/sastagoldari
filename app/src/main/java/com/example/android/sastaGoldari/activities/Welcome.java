@@ -1,23 +1,27 @@
 package com.example.android.sastaGoldari.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.android.sastaGoldari.R;
 
 public class Welcome extends AppCompatActivity {
+    private LinearLayout llQuery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-
-        Button customer = (Button)findViewById(R.id.user);
+        llQuery = findViewById(R.id.llQuery);
+        Button customer = (Button) findViewById(R.id.user);
         customer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -34,5 +38,21 @@ public class Welcome extends AppCompatActivity {
                 startActivity(j);
             }
         });
+        llQuery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openWhatsapp("+919432519573");
+            }
+        });
+    }
+    private void openWhatsapp(String num) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setPackage("com.whatsapp");
+        intent.setData(Uri.parse("https://api.whatsapp.com/send?phone="+num+"&text="));
+        if (Welcome.this.getPackageManager().resolveActivity(intent, 0) != null) {
+            startActivity(intent);
+        } else {
+            Toast.makeText(Welcome.this, "Please install whatsapp", Toast.LENGTH_SHORT).show();
+        }
     }
 }

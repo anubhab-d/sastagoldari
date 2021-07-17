@@ -25,7 +25,7 @@ public class logadmin extends AppCompatActivity {
                 EditText username = (EditText) findViewById(R.id.editText);
                 EditText password = (EditText) findViewById(R.id.editText2);
 
-                if(username.getText().toString().equals("user") && password.getText().toString().equals("pass")){
+                if(username.getText().toString().equals("user") && password.getText().toString().equals("SitamAnuPartha")){
                     Toast.makeText(getApplicationContext(),"Login Success",Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(logadmin.this, SelectEditActivity.class);
                     startActivity(i);
