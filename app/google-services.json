@@ -7,6 +7,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:906005472096:android:5f71fc88f560b853977405",
+        "android_client_info": {
+          "package_name": "com.adex11.android.sastaGoldari"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906005472096-nrvslhc72un77g67queti0ssqkc3s65s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGzVql74lO963nWWQj8EpB0IpLPMFnSc4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906005472096-nrvslhc72un77g67queti0ssqkc3s65s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:906005472096:android:0eb47ed786af0054977405",
         "android_client_info": {
           "package_name": "com.example.android.sastaGoldari"

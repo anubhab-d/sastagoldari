@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.sastaGoldari">
+    package="com.adex11.android.sastaGoldari">
 
     <application
         android:allowBackup="true"
@@ -10,32 +10,32 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.SelectEditActivity"
+            android:name="com.adex11.android.sastaGoldari.activities.SelectEditActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.vieworder"
+            android:name="com.adex11.android.sastaGoldari.activities.vieworder"
             android:theme="@style/ViewOrderTheme"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activities.deleteitem"
+        <activity android:name="com.adex11.android.sastaGoldari.activities.deleteitem"
                   android:screenOrientation="portrait"/>
-        <activity android:name=".activities.edititem"
+        <activity android:name="com.adex11.android.sastaGoldari.activities.edititem"
                   android:screenOrientation="portrait"/>
-        <activity android:name=".activities.additem"
+        <activity android:name="com.adex11.android.sastaGoldari.activities.additem"
                   android:screenOrientation="portrait"/>
         <activity
-            android:name=".activities.Welcome"
+            android:name="com.adex11.android.sastaGoldari.activities.Welcome"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activities.thankyou"
+        <activity android:name="com.adex11.android.sastaGoldari.activities.thankyou"
                   android:screenOrientation="portrait"/>
-        <activity android:name=".activities.address"
+        <activity android:name="com.adex11.android.sastaGoldari.activities.address"
                   android:screenOrientation="portrait"/>
-        <activity android:name=".activities.reviewitems"
+        <activity android:name="com.adex11.android.sastaGoldari.activities.reviewitems"
                   android:screenOrientation="portrait"/>
-        <activity android:name=".activities.logadmin"
+        <activity android:name="com.adex11.android.sastaGoldari.activities.logadmin"
                   android:screenOrientation="portrait"/>
-        <activity android:name=".activities.MainActivity"
+        <activity android:name="com.adex11.android.sastaGoldari.activities.MainActivity"
                   android:screenOrientation="portrait"/>
-        <activity android:name=".activities.splashscreen"
+        <activity android:name="com.adex11.android.sastaGoldari.activities.splashscreen"
                   android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
